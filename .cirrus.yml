@@ -3,29 +3,40 @@ env: # Environment variables to pass to all tasks
     CIRRUS_WORKING_DIR: "/tmp/ci" # Where to clone the aosp-builder repo
 
 # store our secrets here
-    github_token: "ENCRYPTED[!82ee7e07446c86fe97dda507543443a525fec83e693679c8f84d740764987310d74262013f45a1e5a56cc54e334e8f7c!]"
-    bot_api: "ENCRYPTED[!10482e25ca82cf0efa74e4c474a9e5cb82c1b2e5545657dd1917cba34aa08ce880b37bef99a47d0a49c4bb48523144b9!]"
-    chat_id: "ENCRYPTED[!c519abe30864df229179faa4e1eeaa0fde992d896ed620d45cb1f2ca25f0ee3b9373d08fb64a737c8759ae592ef9351c!]"
+    github_token: "ENCRYPTED[2539c75bb8875e69694dc0e39de735e66fb1e3bb7fe0cf4bf96610ce84f900c746955120fd7e3bf36eaa7393c714e488]"
+    bot_api:      "ENCRYPTED[42ff1fc84c9088039d74a59e7c1cabd60d9fd0d0eafedbd97162d91650901cd1f954e9e1b5aff55965277a432d6cd58f]"
+    chat_id:      "ENCRYPTED[3e67184e30638257b525e39dbe1a4677b5b672a1fdc06153b38a3097dfe653181088f3239840fee84407a815d1b54950]"
+
+# variable my secrets
+    GMAIL:        "ENCRYPTED[a06ae1c35ab78a510fd16ffbddb8e6ad7282ba1706ad7fd189623dc02bccc98e54f4966c62d731348fcc5820adad2b32]"
+    RCLONETK:     "ENCRYPTED[!65b42e46fbb495f5f3093d9f2a12b227abbc528a4a7723330cc675454e87bfb860c8f8922a7f90a8d626ea8260d29126!]"
+    RCLONECONF:   "ENCRYPTED[fc25ea2e5899485e02f117b706d9e63ab223d79efa1534fa0afd7e274b97de77633a76d179d22a99c6cbb47d9b699775]"
+    RCLONELOCAL:  "ENCRYPTED[c1e4cf98b6a3c4f2d5b16af62da109ace12da5ab4b03ad840dcd61d639e0daebbd59a1451b4543e9a8f8d401cc6a63c5]"
+    RCLONE:       "ENCRYPTED[1ab2afbbdeea6d60a7136c6ae2347041053efd4beba6b22b263dfcf66921a3cdaefcda3221d6e7e8a3cf171000e85818]"
 
 # store information about git here
-    gmail: xyz@gmail.com
+    gmail: $GMAIL
 
 task:
     name: aosp
     timeout_in: 260m
     container:
-      image: aarunalr/aosp-build
+      image: dopaemon/bionic
       cpu: 8
       memory: 32G
+    setup_script:
+      - mkdir -p $RCLONELOCAL
+      - touch $RCLONECONF
+      - echo $RCLONETK > $RCLONECONF
     download_ccache_background_script: # To download ccache in background
-      - curl -o /tmp/ci/function https://raw.githubusercontent.com/projects-nexus/cirrus-script/main/function
-      - curl -o /tmp/ci/download_ccache https://raw.githubusercontent.com/projects-nexus/cirrus-script/main/download_ccache
+      - curl -o /tmp/ci/function https://raw.githubusercontent.com/dopaemon/cirrus-script/main/function
+      - curl -o /tmp/ci/download_ccache https://raw.githubusercontent.com/dopaemon/cirrus-script/main/download_ccache
       - bash download_ccache # Ccache download script
     sync_script:
       - bash sync
     build_script:
-      - curl -o build https://raw.githubusercontent.com/projects-nexus/cirrus-script/main/build
+      - curl -o build https://raw.githubusercontent.com/dopaemon/cirrus-script/main/build
       - bash build
     upload_ccache_script: # Upload ccache to cloud foreground
-      - curl -o upload_ccache https://raw.githubusercontent.com/projects-nexus/cirrus-script/main/upload_ccache
+      - curl -o upload_ccache https://raw.githubusercontent.com/dopaemon/cirrus-script/main/upload_ccache
       - bash upload_ccache # Ccache uploading script

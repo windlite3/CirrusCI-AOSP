@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Normal build steps
-. build/envsetup.sh
-lunch rom_lavender-userdebug
-make bacon -j$(nproc --all)
+source build/envsetup.sh
+lunch arrow_sweet-userdebug
+mka bacon -j$(nproc --all)
