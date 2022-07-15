@@ -5,7 +5,7 @@ env: # Environment variables to pass to all tasks
 # store our secrets here
     github_token: "ENCRYPTED[2539c75bb8875e69694dc0e39de735e66fb1e3bb7fe0cf4bf96610ce84f900c746955120fd7e3bf36eaa7393c714e488]"
     bot_api:      "ENCRYPTED[42ff1fc84c9088039d74a59e7c1cabd60d9fd0d0eafedbd97162d91650901cd1f954e9e1b5aff55965277a432d6cd58f]"
-    chat_id:      "ENCRYPTED[3e67184e30638257b525e39dbe1a4677b5b672a1fdc06153b38a3097dfe653181088f3239840fee84407a815d1b54950]"
+    chat_id:      "ENCRYPTED[e31813de36093e81c8f32531a7c14b794f4fc549961403b11658177ae8dbecf18112bbe6eb4c7e18441aab569383128e]"
 
 # variable my secrets
     GMAIL:        "ENCRYPTED[a06ae1c35ab78a510fd16ffbddb8e6ad7282ba1706ad7fd189623dc02bccc98e54f4966c62d731348fcc5820adad2b32]"
