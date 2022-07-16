@@ -3,16 +3,16 @@ env: # Environment variables to pass to all tasks
     CIRRUS_WORKING_DIR: "/tmp/ci" # Where to clone the aosp-builder repo
 
 # store our secrets here
-    github_token: "ENCRYPTED[2539c75bb8875e69694dc0e39de735e66fb1e3bb7fe0cf4bf96610ce84f900c746955120fd7e3bf36eaa7393c714e488]"
-    bot_api:      "ENCRYPTED[42ff1fc84c9088039d74a59e7c1cabd60d9fd0d0eafedbd97162d91650901cd1f954e9e1b5aff55965277a432d6cd58f]"
-    chat_id:      "ENCRYPTED[e31813de36093e81c8f32531a7c14b794f4fc549961403b11658177ae8dbecf18112bbe6eb4c7e18441aab569383128e]"
+    github_token: "ENCRYPTED[a0d2f4227bc6e232c9c1ce0b2f97b9dadaeecca381f805ce1e88153dc50a376dfdae9eed92c9be6c91b282ca6595eb17]"
+    bot_api:      "ENCRYPTED[245a12c0165cdbdd16cd61e7ce32cf20aa2b9e0ff28ad96aea951144bb130021df4db38c2bb9b2b341a9e207b85de0d3]"
+    chat_id:      "ENCRYPTED[eca895ca7f73eb4ff0422d9de26c5655d037c0311c1177d68dddba0dd5e614bbdf3428bca51e9a98365915fc5ef9285d]"
 
 # variable my secrets
-    GMAIL:        "ENCRYPTED[a06ae1c35ab78a510fd16ffbddb8e6ad7282ba1706ad7fd189623dc02bccc98e54f4966c62d731348fcc5820adad2b32]"
-    RCLONETK:     "ENCRYPTED[!65b42e46fbb495f5f3093d9f2a12b227abbc528a4a7723330cc675454e87bfb860c8f8922a7f90a8d626ea8260d29126!]"
-    RCLONECONF:   "ENCRYPTED[fc25ea2e5899485e02f117b706d9e63ab223d79efa1534fa0afd7e274b97de77633a76d179d22a99c6cbb47d9b699775]"
-    RCLONELOCAL:  "ENCRYPTED[c1e4cf98b6a3c4f2d5b16af62da109ace12da5ab4b03ad840dcd61d639e0daebbd59a1451b4543e9a8f8d401cc6a63c5]"
-    RCLONE:       "ENCRYPTED[1ab2afbbdeea6d60a7136c6ae2347041053efd4beba6b22b263dfcf66921a3cdaefcda3221d6e7e8a3cf171000e85818]"
+    GMAIL:        "ENCRYPTED[de314617c60065214e04e401459bab7d081b41c7911adfb3707606c6d3a58823cbab4186930508fbdb042edbec7a416c]"
+    RCLONETK:     "ENCRYPTED[9a48547ec663206081b27a69a06ea1c803744fc6344acf39ff2dbc1aea84b4d797e1f64763878968b1fccdccedfbdb83]"
+    RCLONECONF:   "ENCRYPTED[6717a9db76f7d37e336391d8e7c1f8b35745c418c37134ec1341a583c69070de0237e1e0a3e503539a827e93611e1cb2]"
+    RCLONELOCAL:  "ENCRYPTED[ec9cb10397166efa1a28928e172f1dd2bac5f3f9ee4175b99e9356657361fbc03e6af1cad8d6f98787dab0b8686c44ac]7"
+    RCLONE:       "ENCRYPTED[3d0d30f416a5da9cada1653cdd5541d7394e9c946501b17d7754083cbb91bad9914ae5ed6e6a61156947fae89452ea2a]"
 
 # store information about git here
     gmail: $GMAIL
@@ -29,14 +29,14 @@ task:
       - touch $RCLONECONF
       - echo $RCLONETK > $RCLONECONF
     download_ccache_background_script: # To download ccache in background
-      - curl -o /tmp/ci/function https://raw.githubusercontent.com/dopaemon/cirrus-script/main/function
-      - curl -o /tmp/ci/download_ccache https://raw.githubusercontent.com/dopaemon/cirrus-script/main/download_ccache
+      - curl -o /tmp/ci/function https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/function
+      - curl -o /tmp/ci/download_ccache https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/download_ccache
       - bash download_ccache # Ccache download script
     sync_script:
       - bash sync
     build_script:
-      - curl -o build https://raw.githubusercontent.com/dopaemon/cirrus-script/main/build
+      - curl -o build https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/build
       - bash build
     upload_ccache_script: # Upload ccache to cloud foreground
-      - curl -o upload_ccache https://raw.githubusercontent.com/dopaemon/cirrus-script/main/upload_ccache
+      - curl -o upload_ccache https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/upload_ccache
       - bash upload_ccache # Ccache uploading script
