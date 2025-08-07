@@ -29,14 +29,15 @@ task:
       - touch $RCLONECONF
       - echo $RCLONETK > $RCLONECONF
     download_ccache_background_script: # To download ccache in background
-      - curl -o /tmp/ci/function https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/function
-      - curl -o /tmp/ci/download_ccache https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/download_ccache
+      - curl -o /tmp/ci/function https://raw.githubusercontent.com/windlite3/CirrusCI-AOSP/main/function
+      - curl -o /tmp/ci/download_ccache https://raw.githubusercontent.com/windlite3/CirrusCI-AOSP/main/download_ccache
       - bash download_ccache # Ccache download script
     sync_script:
       - bash sync
     build_script:
-      - curl -o build https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/build
+      - curl -o build https://raw.githubusercontent.com/windlite3/CirrusCI-AOSP/main/build
       - bash build
     upload_ccache_script: # Upload ccache to cloud foreground
-      - curl -o upload_ccache https://raw.githubusercontent.com/dopaemon/CirrusCI-AOSP/main/upload_ccache
+      - curl -o upload_ccache https://raw.githubusercontent.com/windlite3/CirrusCI-AOSP/main/upload_ccache
       - bash upload_ccache # Ccache uploading script
+
